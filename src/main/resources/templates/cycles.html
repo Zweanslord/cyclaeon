@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cyclaeon: Cycles</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Cycles</h1>
+	<p>A list of past and current cycles.</p>
+	<ul>
+		<li th:each="cycle : ${cycles}"
+			th:text="${cycle.name}">A Cycle</li>
+	</ul>
+	<p><a href="/create">Create Cycle</a></p>
+</body>
+</html>
