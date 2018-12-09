@@ -41,12 +41,25 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<!-- In-memory database -->
+		<!-- In-memory database for local development and testing -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Switch from Spring Boot 2.x standard HikariCP to Tomcat JDBC
+		to avoid variable which has problems with environment variables. -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+		</dependency>
+		<!--  PostgreSQL in production environment -->
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.2</version>
+		</dependency>
+		
 		
 		<!-- Apache Commons utilities -->
 		<dependency>
