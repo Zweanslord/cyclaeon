@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>Create Cycle</h1>
-	<form action="#" th:action="@{/create}" th:object="${createCycleForm}" method="post">
+	<form action="#" th:object="${createCycleForm}" method="post">
 		<p>Name: <input type="text" th:field="*{name}" /></p>
 		<p><input type="submit" value="Submit" /></p>
 	</form>
