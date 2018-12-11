@@ -25,7 +25,7 @@ public class CreateCycleController {
 	}
 
 	@GetMapping("/master/{key}/create")
-	public String cycles(@PathVariable String key, Model model) {
+	public String form(@PathVariable String key, Model model) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
@@ -35,13 +35,13 @@ public class CreateCycleController {
 	}
 
 	@PostMapping("/master/{key}/create")
-	public String cycles(@PathVariable String key, @ModelAttribute CreateCycleForm createCycleForm) {
+	public String create(@PathVariable String key, @ModelAttribute CreateCycleForm createCycleForm) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
 
 		cycleApplicationService.create(createCycleForm.getName());
-		return "redirect:/cycles";
+		return "redirect:/master/" + key;
 	}
 
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cyclaeon: Update Cycle</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Update Cycle</h1>
+	<form action="#" th:object="${updateCycleForm}" method="post">
+		<label for="description">Description:</label>
+		<textarea id="description" th:field="*{description}">Description</textarea>
+		<br/>
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

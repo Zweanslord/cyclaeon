@@ -31,9 +31,21 @@ public class CycleQueryServiceImpl implements CycleQueryService {
 
 	private static List<CycleDto> toDtos(Iterable<Cycle> cycles) {
 		return StreamSupport.stream(cycles.spliterator(), false)
-				.map(Cycle::getName)
-				.map(CycleDto::new)
+				.map(CycleQueryServiceImpl::toDto)
 				.collect(Collectors.toList());
+	}
+
+	private static CycleDto toDto(Cycle cycle) {
+		return new CycleDto(
+				cycle.getName(),
+				cycle.getDescription());
+	}
+
+	@Override
+	public CycleDto findCycle(String name) {
+		return cycleRepository.findById(name)
+				.map(CycleQueryServiceImpl::toDto)
+				.orElseThrow(() -> new IllegalArgumentException(String.format("Did not find Cycle '%s'.", name)));
 	}
 
 }
