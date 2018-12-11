@@ -9,44 +9,39 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import cyclaeon.service.CycleDto;
-import cyclaeon.service.CycleService;
+import cyclaeon.service.CycleApplicationService;
 
 @Controller
 public class CreateCycleController {
-	
+
 	private final String cycleMasterKey;
-	private final CycleService cycleService;
-	
+	private final CycleApplicationService cycleApplicationService;
+
 	@Autowired
-	public CreateCycleController(CycleService cycleService,
+	public CreateCycleController(CycleApplicationService cycleApplicationService,
 			@Value("${cycle.master.key}") String cycleMasterKey) {
-		this.cycleService = cycleService;
+		this.cycleApplicationService = cycleApplicationService;
 		this.cycleMasterKey = cycleMasterKey;
 	}
-	
+
 	@GetMapping("/master/{key}/create")
-    public String cycles(@PathVariable String key, Model model) {
+	public String cycles(@PathVariable String key, Model model) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
-		
-        model.addAttribute("createCycleForm", new CreateCycleForm());
-        return "create";
-    }
-	
+
+		model.addAttribute("createCycleForm", new CreateCycleForm());
+		return "create";
+	}
+
 	@PostMapping("/master/{key}/create")
 	public String cycles(@PathVariable String key, @ModelAttribute CreateCycleForm createCycleForm) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
-		
-		cycleService.create(toDto(createCycleForm));
+
+		cycleApplicationService.create(createCycleForm.getName());
 		return "redirect:/cycles";
 	}
-	
-	private static final CycleDto toDto(CreateCycleForm form) {
-		return new CycleDto(form.getName());
-	}
-	
+
 }

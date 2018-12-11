@@ -5,22 +5,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import cyclaeon.service.CycleService;
+import cyclaeon.service.CycleQueryService;
 
 @Controller
 public class CyclesController {
-	
-	private final CycleService cycleService;
-	
+
+	private final CycleQueryService cycleQueryService;
+
 	@Autowired
-	public CyclesController(CycleService cycleService) {
-		this.cycleService = cycleService;
+	public CyclesController(CycleQueryService cycleService) {
+		this.cycleQueryService = cycleService;
 	}
 
 	@GetMapping("/cycles")
-    public String cycles(Model model) {
-		model.addAttribute("cycles", cycleService.findAll());
-        return "cycles";
-    }
+	public String cycles(Model model) {
+		model.addAttribute("cycles", cycleQueryService.findAll());
+		return "cycles";
+	}
 
 }
