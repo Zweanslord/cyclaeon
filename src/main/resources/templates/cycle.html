@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:inline="text">Cyclaeon: Cycle [[${cycle.name}]]</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Cycle <span th:text="${cycle.name}" th:remove="tag">Alpha</span></h1>
+	
+	<p th:text="${cycle.description}">Description for Cycle Alpha.</p>
+	
+	<p>
+		<a href="/cycles">Cycles</a>
+	</p>
+</body>
+</html>

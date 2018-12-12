@@ -39,6 +39,7 @@ public class UpdateCycleController {
 		CycleDto cycleDto = cycleQueryService.findCycle(name);
 		var updateCycleForm = new UpdateCycleForm(cycleDto.description);
 
+		model.addAttribute("cycle", cycleDto);
 		model.addAttribute("updateCycleForm", updateCycleForm);
 		return "updateCycle";
 	}

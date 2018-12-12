@@ -6,10 +6,15 @@
 </head>
 <body>
 	<h1>Cycles</h1>
+	
 	<p>A list of past and current cycles.</p>
+	
 	<ul>
-		<li th:each="cycle : ${cycles}"
-			th:text="${cycle.name}">A Cycle</li>
+		<li th:each="cycle : ${cycles}">
+			<a th:href="@{'/cycle/' + ${cycle.name}}" th:text="${cycle.name}">A Cycle</a>
+		</li>
+		<li th:if="${cycles.empty}">No cycles.</li>
 	</ul>
+	
 </body>
 </html>

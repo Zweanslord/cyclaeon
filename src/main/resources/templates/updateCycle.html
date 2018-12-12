@@ -1,16 +1,24 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Cyclaeon: Update Cycle</title>
+	<title th:inline="text">Cyclaeon: Update Cycle [[${cycle.name}]]</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-	<h1>Update Cycle</h1>
+	<h1>Update Cycle <span th:text="${cycle.name}" th:remove="tag">Alpha</span></h1>
+	
+	<h2>Description</h2>
+	<p th:text="${cycle.description}">Description Cycle Alpha.</p>
+	
 	<form action="#" th:object="${updateCycleForm}" method="post">
-		<label for="description">Description:</label>
-		<textarea id="description" th:field="*{description}">Description</textarea>
-		<br/>
+		<fieldset>
+			<label for="description">Description:</label>
+			<textarea id="description" th:field="*{description}">Description Cycle Alpha.</textarea>
+		</fieldset>
 		<input type="submit" value="Submit" />
 	</form>
+	<p>
+		<a href="..">Back</a>
+	</p>
 </body>
 </html>

@@ -9,12 +9,18 @@
 	<p>
 		<a th:href="@{'/master/' + ${key} + '/create'}">Create Cycle</a>
 	</p>
+	
 	<h2>Cycles</h2>
 	<p>A list of past and current cycles.</p>
 	<ul>
 		<li th:each="cycle : ${cycles}">
 			<a th:href="@{'/master/' + ${key} + '/cycle/' + ${cycle.name}}" th:text="${cycle.name}">A Cycle</a>
 		</li>
+		<li th:if="${cycles.empty}">No cycles.</li>
 	</ul>
+	
+	<p>
+		<a href="/cycles">Public view</a>
+	</p>
 </body>
 </html>
