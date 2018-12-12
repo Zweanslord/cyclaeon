@@ -1,4 +1,4 @@
-package cyclaeon.view;
+package cyclaeon.view.master;
 
 public class UpdateCycleForm {
 

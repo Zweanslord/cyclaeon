@@ -1,4 +1,4 @@
-package cyclaeon.view;
+package cyclaeon.view.master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,14 +14,14 @@ import cyclaeon.service.CycleDto;
 import cyclaeon.service.CycleQueryService;
 
 @Controller
-public class UpdateCycleMasterController {
+public class UpdateCycleController {
 
 	private final CycleApplicationService cycleApplicationService;
 	private final CycleQueryService cycleQueryService;
 	private final String cycleMasterKey;
 
 	@Autowired
-	public UpdateCycleMasterController(
+	public UpdateCycleController(
 			CycleApplicationService cycleApplicationService,
 			CycleQueryService cycleQueryService,
 			@Value("${cycle.master.key}") String cycleMasterKey) {

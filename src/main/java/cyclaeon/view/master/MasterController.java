@@ -1,4 +1,4 @@
-package cyclaeon.view;
+package cyclaeon.view.master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
