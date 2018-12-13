@@ -1,7 +1,13 @@
 package cyclaeon.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -15,22 +21,30 @@ public class Cycle {
 	private final StringId id;
 
 	private String name;
-
 	private String description;
 
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "cycleId", insertable = false, updatable = false)
+	private Set<Faction> factions;
+
 	private Cycle() {
-		this.id = null;
-		this.name = null;
-		this.description = "";
+		super();
+		id = null;
+		name = null;
+		description = "";
+		factions = new HashSet<>();
 	}
 
 	private Cycle(String id, String name, String description) {
+		super();
+
 		var stringId = StringId.of(id);
 		validateName(name);
 
 		this.id = stringId;
 		this.name = name;
 		this.description = description;
+		this.factions = new HashSet<>();
 	}
 
 	private static void validateName(String name) {
@@ -50,6 +64,11 @@ public class Cycle {
 		this.description = description;
 	}
 
+	public void createFaction(String factionId, String name) {
+		var faction = Faction.create(factionId, id, name);
+		factions.add(faction);
+	}
+
 	@Override
 	public boolean equals(Object object) {
 		if (object == null) {
@@ -64,15 +83,14 @@ public class Cycle {
 
 		Cycle other = (Cycle) object;
 		return new EqualsBuilder()
-				.appendSuper(super.equals(object))
-				.append(name, other.name)
+				.append(id, other.id)
 				.build();
 	}
 
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-				.append(name)
+				.append(id)
 				.toHashCode();
 	}
 
@@ -91,6 +109,10 @@ public class Cycle {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public Set<Faction> getFactions() {
+		return Set.copyOf(factions);
 	}
 
 }
