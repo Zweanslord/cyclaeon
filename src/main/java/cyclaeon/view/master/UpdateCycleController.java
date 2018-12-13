@@ -30,30 +30,31 @@ public class UpdateCycleController {
 		this.cycleMasterKey = cycleMasterKey;
 	}
 
-	@GetMapping("/master/{key}/cycle/{name}")
-	public String form(@PathVariable String key, @PathVariable String name, Model model) {
+	@GetMapping("/master/{key}/cycle/{id}")
+	public String form(@PathVariable String key, @PathVariable String id, Model model) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
 
-		CycleDto cycleDto = cycleQueryService.findCycle(name);
-		var updateCycleForm = new UpdateCycleForm(cycleDto.description);
+		CycleDto cycleDto = cycleQueryService.findCycle(id)
+				.orElseThrow(() -> new IllegalStateException(String.format("Did not find Cycle '%s'.", id)));
+
+		var updateCycleForm = new UpdateCycleForm(cycleDto.name, cycleDto.description);
 
 		model.addAttribute("cycle", cycleDto);
 		model.addAttribute("updateCycleForm", updateCycleForm);
 		return "updateCycle";
 	}
 
-	@PostMapping("/master/{key}/cycle/{name}")
-	public String update(@PathVariable String key, @PathVariable String name,
-			@ModelAttribute UpdateCycleForm updateCycleForm) {
+	@PostMapping("/master/{key}/cycle/{id}")
+	public String update(@PathVariable String key, @PathVariable String id, @ModelAttribute UpdateCycleForm updateCycleForm) {
 		if (!cycleMasterKey.equals(key)) {
 			throw new IllegalArgumentException();
 		}
 
-		cycleApplicationService.updateDescription(name, updateCycleForm.getDescription());
+		cycleApplicationService.updateDescriptionAndName(id, updateCycleForm.getName(), updateCycleForm.getDescription());
 
-		return "redirect:/master/" + cycleMasterKey + "/cycle/" + name;
+		return "redirect:/master/" + cycleMasterKey + "/cycle/" + id;
 	}
 
 }

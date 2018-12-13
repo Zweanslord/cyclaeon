@@ -2,18 +2,18 @@ package cyclaeon.view.master;
 
 public class CreateCycleForm {
 	
-	private String name;
+	private String id;
 	
 	public CreateCycleForm() {
-		name = "";
+		id = "";
 	}
 
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

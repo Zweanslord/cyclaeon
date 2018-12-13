@@ -40,7 +40,7 @@ public class CreateCycleController {
 			throw new IllegalArgumentException();
 		}
 
-		cycleApplicationService.create(createCycleForm.getName());
+		cycleApplicationService.create(createCycleForm.getId());
 		return "redirect:/master/" + key;
 	}
 

@@ -14,7 +14,7 @@
 	<p>A list of past and current cycles.</p>
 	<ul>
 		<li th:each="cycle : ${cycles}">
-			<a th:href="@{'/master/' + ${key} + '/cycle/' + ${cycle.name}}" th:text="${cycle.name}">A Cycle</a>
+			<a th:href="@{'/master/' + ${key} + '/cycle/' + ${cycle.id}}" th:text="${cycle.name}">A Cycle</a>
 		</li>
 		<li th:if="${cycles.empty}">No cycles.</li>
 	</ul>

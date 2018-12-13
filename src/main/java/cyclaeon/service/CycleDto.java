@@ -6,10 +6,12 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public final class CycleDto {
 
+	public final String id;
 	public final String name;
 	public final String description;
 
-	public CycleDto(String name, String description) {
+	public CycleDto(String id, String name, String description) {
+		this.id = id;
 		this.name = name;
 		this.description = description;
 	}

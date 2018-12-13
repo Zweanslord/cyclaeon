@@ -33,7 +33,7 @@ public class CycleQueryServiceIT {
 
 		var cycles = sut.findAll();
 
-		List<CycleDto> expected = List.of(new CycleDto("cycle", ""));
+		List<CycleDto> expected = List.of(new CycleDto("cycle", "cycle", ""));
 		assertEquals(expected, cycles);
 	}
 

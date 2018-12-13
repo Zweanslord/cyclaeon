@@ -20,12 +20,20 @@ public class CycleTest {
 	}
 
 	@Test
-	public void updateDescription() {
+	public void updateNameAndDescription() {
 		Cycle cycle = createCycle();
 
-		cycle.updateDescription("DESCRIPTION");
+		cycle.updateNameAndDescription("NAME", "DESCRIPTION");
 
+		assertEquals("NAME", cycle.getName());
 		assertEquals("DESCRIPTION", cycle.getDescription());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void updateNameAndDescriptionWithBlankName() {
+		Cycle cycle = createCycle();
+
+		cycle.updateNameAndDescription("", "IRRELEVANT_DESCRIPTION");
 	}
 
 	private static Cycle createCycle() {

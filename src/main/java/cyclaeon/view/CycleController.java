@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import cyclaeon.service.CycleDto;
 import cyclaeon.service.CycleQueryService;
 
 @Controller
@@ -18,9 +19,11 @@ public class CycleController {
 		this.cycleQueryService = cycleQueryService;
 	}
 
-	@GetMapping("/cycle/{name}")
-	public String cycle(@PathVariable String name, Model model) {
-		model.addAttribute("cycle", cycleQueryService.findCycle(name));
+	@GetMapping("/cycle/{id}")
+	public String cycle(@PathVariable String id, Model model) {
+		CycleDto cycle = cycleQueryService.findCycle(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid id."));
+		model.addAttribute("cycle", cycle);
 		return "cycle";
 	}
 

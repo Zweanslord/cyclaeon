@@ -1,6 +1,7 @@
 package cyclaeon.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cyclaeon.entity.Cycle;
+import cyclaeon.entity.StringId;
 import cyclaeon.repository.CycleRepository;
 import cyclaeon.service.CycleDto;
 import cyclaeon.service.CycleQueryService;
@@ -37,15 +39,15 @@ public class CycleQueryServiceImpl implements CycleQueryService {
 
 	private static CycleDto toDto(Cycle cycle) {
 		return new CycleDto(
+				cycle.getId(),
 				cycle.getName(),
 				cycle.getDescription());
 	}
 
 	@Override
-	public CycleDto findCycle(String name) {
-		return cycleRepository.findById(name)
-				.map(CycleQueryServiceImpl::toDto)
-				.orElseThrow(() -> new IllegalArgumentException(String.format("Did not find Cycle '%s'.", name)));
+	public Optional<CycleDto> findCycle(String id) {
+		return cycleRepository.findById(StringId.of(id))
+				.map(CycleQueryServiceImpl::toDto);
 	}
 
 }

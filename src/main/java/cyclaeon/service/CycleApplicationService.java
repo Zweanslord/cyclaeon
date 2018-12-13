@@ -2,8 +2,8 @@ package cyclaeon.service;
 
 public interface CycleApplicationService {
 
-	void create(String cycleName);
+	void create(String id);
 
-	void updateDescription(String cycleName, String description);
+	void updateDescriptionAndName(String id, String name, String description);
 
 }

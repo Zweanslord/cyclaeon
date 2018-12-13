@@ -2,11 +2,21 @@ package cyclaeon.view.master;
 
 public class UpdateCycleForm {
 
+	private String name;
 	private String description;
 
-	public UpdateCycleForm(String description) {
+	public UpdateCycleForm(String name, String description) {
 		super();
+		this.name = name;
 		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {

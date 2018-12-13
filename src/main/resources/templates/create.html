@@ -7,7 +7,7 @@
 <body>
 	<h1>Create Cycle</h1>
 	<form action="#" th:object="${createCycleForm}" method="post">
-		<p>Name: <input type="text" th:field="*{name}" /></p>
+		<p><label for="id">Id</label>: <input id="id" type="text" th:field="*{id}" /></p>
 		<p><input type="submit" value="Submit" /></p>
 	</form>
 </body>

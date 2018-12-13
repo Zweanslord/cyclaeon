@@ -7,12 +7,16 @@
 <body>
 	<h1>Update Cycle <span th:text="${cycle.name}" th:remove="tag">Alpha</span></h1>
 	
+	<p>Id: <span th:text="${cycle.id}" th:remove="tag">alpha</span></p>
+	
 	<h2>Description</h2>
 	<p th:text="${cycle.description}">Description Cycle Alpha.</p>
 	
 	<form action="#" th:object="${updateCycleForm}" method="post">
 		<fieldset>
-			<label for="description">Description:</label>
+			<label for="name">Name</label>
+			<input type="text" th:field="*{name}">Alpha</input>
+			<label for="description">Description</label>
 			<textarea id="description" th:field="*{description}">Description Cycle Alpha.</textarea>
 		</fieldset>
 		<input type="submit" value="Submit" />

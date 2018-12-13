@@ -11,7 +11,7 @@
 	
 	<ul>
 		<li th:each="cycle : ${cycles}">
-			<a th:href="@{'/cycle/' + ${cycle.name}}" th:text="${cycle.name}">A Cycle</a>
+			<a th:href="@{'/cycle/' + ${cycle.id}}" th:text="${cycle.name}">A Cycle</a>
 		</li>
 		<li th:if="${cycles.empty}">No cycles.</li>
 	</ul>
