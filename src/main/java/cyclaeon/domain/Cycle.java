@@ -1,4 +1,4 @@
-package cyclaeon.entity;
+package cyclaeon.domain;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cyclaeon.entity.Cycle;
-import cyclaeon.entity.StringId;
+import cyclaeon.domain.Cycle;
+import cyclaeon.domain.StringId;
 import cyclaeon.repository.CycleRepository;
 import cyclaeon.service.CycleDto;
 import cyclaeon.service.CycleQueryService;

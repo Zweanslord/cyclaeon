@@ -1,8 +1,10 @@
-package cyclaeon.entity;
+package cyclaeon.domain;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+
+import cyclaeon.domain.StringId;
 
 public class StringIdTest {
 

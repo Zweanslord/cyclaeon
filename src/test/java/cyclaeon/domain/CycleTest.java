@@ -1,10 +1,14 @@
-package cyclaeon.entity;
+package cyclaeon.domain;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Set;
 
 import org.junit.Test;
+
+import cyclaeon.domain.Cycle;
+import cyclaeon.domain.Faction;
+import cyclaeon.domain.StringId;
 
 public class CycleTest {
 
