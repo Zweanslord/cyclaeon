@@ -1,5 +1,6 @@
 package cyclaeon.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
@@ -17,11 +18,15 @@ public class Faction {
 	private String name;
 	private String description;
 
+	@Embedded
+	private Teams teams;
+
 	private Faction() {
 		super();
 		id = null;
 		name = null;
 		description = null;
+		teams = null;
 	}
 
 	private Faction(String id, StringId cycleId, String name, String description) {
@@ -33,6 +38,7 @@ public class Faction {
 		this.id = factionId;
 		this.name = name;
 		this.description = description;
+		teams = Teams.zero();
 	}
 
 	private static void validateName(String name) {
@@ -51,6 +57,14 @@ public class Faction {
 
 		this.name = name;
 		this.description = description;
+	}
+
+	public void assembleTeams(TeamsAssemblyInput teamsAssemblyInput) {
+		this.teams = Teams.assemble(teamsAssemblyInput);
+	}
+
+	public boolean hasFactionId(String factionId) {
+		return id.getId().equals(factionId);
 	}
 
 	@Override
