@@ -52,18 +52,18 @@ public class Faction {
 		return new Faction(id, cycleId, name, description);
 	}
 
-	public void updateNameAndDescription(String name, String description) {
+	void updateNameAndDescription(String name, String description) {
 		validateName(name);
 
 		this.name = name;
 		this.description = description;
 	}
 
-	public void assembleTeams(TeamsAssemblyInput teamsAssemblyInput) {
+	void assembleTeams(TeamsAssemblyInput teamsAssemblyInput) {
 		this.teams = Teams.assemble(teamsAssemblyInput);
 	}
 
-	public boolean hasFactionId(String factionId) {
+	boolean hasFactionId(String factionId) {
 		return id.getId().equals(factionId);
 	}
 
@@ -107,6 +107,26 @@ public class Faction {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public int getIlluminators() {
+		return teams.getIlluminators();
+	}
+
+	public int getObscurers() {
+		return teams.getObscurers();
+	}
+
+	public int getCreators() {
+		return teams.getCreators();
+	}
+
+	public int getDestroyers() {
+		return teams.getDestroyers();
+	}
+
+	public int getGuardians() {
+		return teams.getGuardians();
 	}
 
 }

@@ -6,10 +6,6 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import cyclaeon.domain.Cycle;
-import cyclaeon.domain.Faction;
-import cyclaeon.domain.StringId;
-
 public class CycleTest {
 
 	@Test
@@ -29,7 +25,7 @@ public class CycleTest {
 
 	@Test
 	public void updateNameAndDescription() {
-		Cycle cycle = createCycle();
+		Cycle cycle = Cycle.create("IRRELEVANT_ID");
 
 		cycle.updateNameAndDescription("Updated name", "Updated description.");
 
@@ -39,7 +35,7 @@ public class CycleTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void updateNameAndDescriptionWithBlankName() {
-		Cycle cycle = createCycle();
+		Cycle cycle = Cycle.create("IRRELEVANT_ID");
 
 		cycle.updateNameAndDescription("", "IRRELEVANT_DESCRIPTION");
 	}
@@ -63,8 +59,34 @@ public class CycleTest {
 		cycle.getFactions().add(Faction.create("anotherFactionId", StringId.of("Id"), "Another Name"));
 	}
 
-	private static Cycle createCycle() {
-		return Cycle.create("IRRELEVANT_NAME");
+	@Test
+	public void assembleTeams() {
+		Cycle cycle = Cycle.create("IRRELEVANT_ID");
+		cycle.createFaction("factionId", "Name");
+
+		cycle.assembleTeams("factionId", new TeamsAssemblyInput(1, 1, 1, 1));
+
+		Faction faction = cycle.getFactions().iterator().next();
+		assertEquals(1, faction.getIlluminators());
+		assertEquals(1, faction.getObscurers());
+		assertEquals(1, faction.getCreators());
+		assertEquals(1, faction.getDestroyers());
+		assertEquals(0, faction.getGuardians());
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void assembleTeamsNegativeInput() {
+		Cycle cycle = Cycle.create("IRRELEVANT_ID");
+		cycle.createFaction("factionId", "Name");
+
+		cycle.assembleTeams("factionId", new TeamsAssemblyInput(-1, -1, -1, -1));
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void assembleTeamsNonExistentFaction() {
+		Cycle cycle = Cycle.create("IRRELEVANT_ID");
+
+		cycle.assembleTeams("factionId", new TeamsAssemblyInput(-1, -1, -1, -1));
 	}
 
 }
